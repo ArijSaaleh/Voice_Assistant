@@ -1,0 +1,9 @@
+[greetings]
+hello, Hello! How can I help you?
+hi, Hi! What can I do for you?
+hey, Hey there! How can I assist you?
+
+[time]
+what time is it, It's currently {time}.
+what's the time, The time is {time}.
+tell me the time, It's
