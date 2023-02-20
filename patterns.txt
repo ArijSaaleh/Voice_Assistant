@@ -7,3 +7,6 @@ hey, Hey there! How can I assist you?
 what time is it, It's currently {time}.
 what's the time, The time is {time}.
 tell me the time, It's
+
+[Financial]
+how much is 
