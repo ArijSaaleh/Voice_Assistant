@@ -1,0 +1,55 @@
+{
+  "intents": [
+    {
+      "tag": "greetings",
+      "patterns": {
+        "en": ["hi", "hello", "hey"],
+        "fr": ["salut", "bonjour"]
+      },
+      "responses": {
+        "en": ["Hello!", "Hi there!", "Hey!"],
+        "fr": ["Salut!", "Bonjour!"]
+      }
+    },
+    {
+      "tag": "greetings",
+      "patterns": {
+        "en": ["how are you", "how's it going"],
+        "fr": ["comment vas-tu", "ça va"]
+      },
+      "responses": {
+        "en": ["I'm doing well, thank you.", "I'm great! How are you?"],
+        "fr": ["Je vais bien, merci.", "Je vais super bien! Et toi?"]
+      }
+    },
+    {
+      "tag": "weather",
+      "patterns": {
+        "en": ["what's the weather like", "how's the weather"],
+        "fr": ["quel temps fait-il", "comment est le temps"]
+      },
+      "responses": {
+        "en": ["It's sunny/cloudy/rainy today.", "The temperature is 20 degrees Celsius."],
+        "fr": ["Il fait beau/nuit/pluvieux aujourd'hui.", "La température est de 20 degrés Celsius."]
+      }
+    },
+    {
+      "tag": "goodbyes",
+      "patterns": {
+        "en": ["bye", "see you later", "goodbye"],
+        "fr": ["au revoir", "à bientôt"]
+      },
+      "responses": {
+        "en": ["Goodbye!", "See you later!"],
+        "fr": ["Au revoir!", "À bientôt!"]
+      }
+    },
+    {
+      "tag": "fallback",
+      "responses": {
+        "en": ["Sorry, I didn't understand that. Can you please rephrase?"],
+        "fr": ["Désolé, Je vous comprends pas. Reformule s'il vous plait?"]
+      }
+    }
+  ]
+}
