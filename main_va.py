@@ -30,15 +30,17 @@ engine.setProperty('volume', 1)  # Change the volume
 # Define a function to recognize speech
 def recognize_speech():
     r = sr.Recognizer()
-    # Check if the microphone is available
-    if not sr.Microphone.list_microphone_names():
+    # Cache the list of microphone names
+    microphone_names = sr.Microphone.list_microphone_names()
+    # Check if a microphone is available
+    if not microphone_names:
         return "No microphone found. Please connect a microphone and try again."
     # Adjust for ambient noise and listen to the audio input
     with sr.Microphone() as source:
-        r.adjust_for_ambient_noise(source, duration=1)
+        r.adjust_for_ambient_noise(source)
         print("Listening...")
         try:
-            audio = r.listen(source, timeout=5)
+            audio = r.listen(source)
             text = r.recognize_google(audio)
             return text
         except sr.UnknownValueError:

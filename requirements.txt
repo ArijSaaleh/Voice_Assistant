@@ -1,0 +1,5 @@
+pip install SpeechRecognition
+pip install pyttsx3
+pip install nltk
+pip install fuzzywuzzy
+pip install fastText
