@@ -38,17 +38,25 @@ def recognize_speech():
     # Adjust for ambient noise and listen to the audio input
     with sr.Microphone() as source:
         r.adjust_for_ambient_noise(source)
-        print("Listening...")
+        # Prompt the user to speak
+        print("Say something!")
+        speak("Say something!")
         try:
-            audio = r.listen(source)
-            text = r.recognize_google(audio)
-            return text
+            audio = r.listen(source, timeout=60)
+            print("Got it! Now recognizing...")
+            # Use Google Speech Recognition to recognize the audio
+            user_input = r.recognize_google(audio)
+            return user_input
         except sr.UnknownValueError:
-            return "Sorry, I didn't catch that. Can you please repeat?"
+            print("Sorry, I didn't catch that. Can you please repeat?")
+            speak("Sorry, I didn't catch that. Can you please repeat?")
+            return None
         except sr.RequestError:
-            return "Sorry, there was an issue with the speech recognition service. Please try again later."
+            print("Sorry, there was an issue with the speech recognition service. Please try again later.")
+            return None
         except sr.WaitTimeoutError:
-            return "Sorry, I didn't hear anything. Please try again."
+            print("Sorry, I didn't hear anything. Please try again.")
+            return None
 
 # Define a function to convert text to speech
 def speak(text):
@@ -116,10 +124,6 @@ def get_intent(user_input, intents,language):
         return {'tag': 'error', 'response': 'Oops, something went wrong! Please try again later.'}, 0
 # Define a function to get a response to a user input
 def get_response(user_input,language):
-    # Check if user input is empty
-    if not user_input:
-        speak("Sorry, I didn't get that. Can you please repeat?")
-        return "Sorry, I didn't get that. Can you please repeat?", 0.0
     try:
         
         # Load intents for the detected language
@@ -150,27 +154,28 @@ def get_response(user_input,language):
 while True:
     #user_input = input('You: ')
     user_input= recognize_speech()
-    language = model.predict(user_input)[0][0][-2:]
-    print("Lang: "+ language)
-    print("You said : "+ language)
-    # Preprocess user input
-    preprocessed_input = preprocess(user_input,language)
-    with open(f'patterns.json', 'r') as file:
-        intents = json.load(file)['intents']
-    # Get intent and confidence score
-    intent, confidence = get_intent(preprocessed_input, intents,language)
-    #print("houni mainnn :", intent)
-     # Handle low confidence score
-    if confidence < 0.5:
-        #print(len(intents)-1)
-        print("Bot:", intents[len(intents)-1]["responses"][language]) #response = get_response(fallback_intent, language)
-        continue
-    # Get response for the intent
-    response = get_response(user_input,language)
-    # Handle missing response
-    if response is None:
-        print("Bot: I'm sorry, I don't know how to respond to that.")
-        speak("Bot: I'm sorry, I don't know how to respond to that.")
-        continue
-    # Print the response
-    print("Bot:", response)
+    if user_input:
+        language = model.predict(user_input)[0][0][-2:]
+        print("Lang: "+ language)
+        print("You said : "+ language)
+        # Preprocess user input
+        preprocessed_input = preprocess(user_input,language)
+        with open(f'patterns.json', 'r') as file:
+            intents = json.load(file)['intents']
+        # Get intent and confidence score
+        intent, confidence = get_intent(preprocessed_input, intents,language)
+        #print("houni mainnn :", intent)
+        # Handle low confidence score
+        if confidence < 0.5:
+            #print(len(intents)-1)
+            print("Bot:", intents[len(intents)-1]["responses"][language]) #response = get_response(fallback_intent, language)
+            continue
+        # Get response for the intent
+        response = get_response(user_input,language)
+        # Handle missing response
+        if response is None:
+            print("Bot: I'm sorry, I don't know how to respond to that.")
+            speak("Bot: I'm sorry, I don't know how to respond to that.")
+            continue
+        # Print the response
+        print("Bot:", response)

@@ -46,9 +46,12 @@
     },
     {
       "tag": "fallback",
+      "patterns": ["*"],
       "responses": {
         "en": ["Sorry, I didn't understand that. Can you please rephrase?"],
-        "fr": ["Désolé, Je vous comprends pas. Reformule s'il vous plait?"]
+        "fr": ["Désolé, Je vous comprends pas. Reformule s'il vous plait?"],
+        "de": ["Es tut mir leid, ich habe das nicht verstanden. Können Sie das bitte anders formulieren?"]
+      
       }
     }
   ]
