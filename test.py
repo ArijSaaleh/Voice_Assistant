@@ -9,8 +9,8 @@ model = fasttext.load_model('lid.176.bin')
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
 
-#for voice in voices:
-    #print(voice.id)
+for voice in voices:
+    print(voice.id)
     #MSTTS_V110_enCA_RichardM
 """
     'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_FR-FR_HORTENSE_11.0' 0
@@ -18,6 +18,7 @@ voices = engine.getProperty('voices')
     'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_ZIRA_11.0'     2
     'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-GB_HAZEL_11.0'    3
     """
-text = 'Bonjour, comment allez-vous?'
+"""
+text = 'hey'
 predicted_language = model.predict(text)[0][0][-2:]
-print(predicted_language)
+print(predicted_language)"""
