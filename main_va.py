@@ -30,6 +30,7 @@ engine.setProperty('volume', 1)  # Change the volume
 # Define a function to recognize speech
 def recognize_speech():
     r = sr.Recognizer()
+    #print("hello arij")
     # Cache the list of microphone names
     microphone_names = sr.Microphone.list_microphone_names()
     # Check if a microphone is available
