@@ -11,8 +11,17 @@
         "fr": ["Salut!", "Bonjour!"]
       }
     },
-    
-  
+    {
+      "tag": "greetings",
+      "patterns": {
+        "en": ["how are you", "how's it going"],
+        "fr": ["comment vas-tu", "ça va"]
+      },
+      "responses": {
+        "en": ["I'm doing well, thank you.", "I'm great! How are you?"],
+        "fr": ["Je vais bien, merci.", "Je vais super bien! Et toi?"]
+      }
+    },
     {
       "tag": "weather",
       "patterns": {
