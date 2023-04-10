@@ -27,6 +27,37 @@ engine.setProperty('voice', voices[2].id)
 engine.setProperty('rate', 150)  # Change the speed
 engine.setProperty('volume', 1)  # Change the volume
 
+# Define a function to recognize speech
+def recognize_speech():
+    r = sr.Recognizer()
+    #print("hello arij")
+    # Cache the list of microphone names
+    microphone_names = sr.Microphone.list_microphone_names()
+    # Check if a microphone is available
+    if not microphone_names:
+        return "No microphone found. Please connect a microphone and try again."
+    # Adjust for ambient noise and listen to the audio input
+    with sr.Microphone() as source:
+        r.adjust_for_ambient_noise(source)
+        # Prompt the user to speak
+        print("Say something!")
+        speak("Say something!")
+        try:
+            audio = r.listen(source)
+            print("Got it! Now recognizing...")
+            # Use Google Speech Recognition to recognize the audio
+            user_input = r.recognize_google(audio)
+            return user_input
+        except sr.UnknownValueError:
+            print("Sorry, I didn't catch that. Can you please repeat?")
+            speak("Sorry, I didn't catch that. Can you please repeat?")
+            return None
+        except sr.RequestError:
+            print("Sorry, there was an issue with the speech recognition service. Please try again later.")
+            return None
+        except sr.WaitTimeoutError:
+            print("Sorry, I didn't hear anything. Please try again.")
+            return None
 
 # Define a function to convert text to speech
 def speak(text):
