@@ -23,7 +23,7 @@ SLEEP_WORD = 'boom'
 # Initialize the Text-to-Speech engine
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
-engine.setProperty('voice', voices[28].id)
+engine.setProperty('voice', voices[2].id)
 engine.setProperty('rate', 150)  # Change the speed
 engine.setProperty('volume', 1)  # Change the volume
 
@@ -66,7 +66,7 @@ def speak(text):
         engine.runAndWait()
     except Exception as e:
         # handle the error gracefully
-        print(f"Error speaking: {str(e)}")
+        print(f"Error speaking: {{str(e)}}")
     finally:
         # ensure the engine is always stopped
         engine.stop()
@@ -99,7 +99,7 @@ def preprocess(sentence,lang):
     return tokens
 
 # Define a function to get intent from the json file
-def get_intent(user_input, intents,language):
+def get_intent(user_input, intents, language):
     max_score = 0
     matched_intent = None
     try:
@@ -112,6 +112,7 @@ def get_intent(user_input, intents,language):
                         matched_intent = intent
         # Calculate confidence score
         confidence = max_score / 100
+        print("Intent : ",)
         # If confidence is low, trigger fallback intent
         if confidence < 0.5:
             if(language=="fr"):
@@ -131,12 +132,12 @@ def get_response(user_input,language):
         with open(f'patterns.json', 'r') as file:
             intents = json.load(file)['intents']
 
-        
         # Preprocess user input
         tokens = preprocess(user_input,language)
         
         # Get the intent with the highest confidence score
         matched_intent, confidence = get_intent(tokens, intents, language)
+        print("respooonsee  ", matched_intent)
         print("fi wost response", matched_intent,"conf: ",confidence)
         
         # Select a random response from the matched intent
@@ -166,13 +167,15 @@ while True:
         # Get intent and confidence score
         intent, confidence = get_intent(preprocessed_input, intents,language)
         #print("houni mainnn :", intent)
+        print("confiiiiii : ",confidence)
+        # Get response for the intent
+        response = get_response(user_input,language)
         # Handle low confidence score
         if confidence < 0.5:
             #print(len(intents)-1)
             print("Bot:", intents[len(intents)-1]["responses"][language]) #response = get_response(fallback_intent, language)
+            print("fallbackkkkk")
             continue
-        # Get response for the intent
-        response = get_response(user_input,language)
         # Handle missing response
         if response is None:
             print("Bot: I'm sorry, I don't know how to respond to that.")
