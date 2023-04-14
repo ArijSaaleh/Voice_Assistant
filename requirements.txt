@@ -1,0 +1,12 @@
+pip install SpeechRecognition
+pip install pyttsx3
+pip install nltk
+sudo apt-get install espeak
+pip install pyaudio
+
+pip install fuzzywuzzy
+pip install fastText
+sudo apt install ffmpeg
+
+pip install git+https://github.com/openai/whisper.git
+pip install python-dotenv
