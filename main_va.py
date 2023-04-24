@@ -43,7 +43,7 @@ def recognize_speech():
         print("Say something!")
         speak("Say something!")
         try:
-            audio = r.listen(source, timeout=60)
+            audio = r.listen(source)
             print("Got it! Now recognizing...")
             # Use Google Speech Recognition to recognize the audio
             user_input = r.recognize_google(audio)
@@ -159,7 +159,7 @@ while True:
     if user_input:
         language = model.predict(user_input)[0][0][-2:]
         print("Lang: "+ language)
-        print("You said : "+ language)
+        print("You said : "+ user_input)
         # Preprocess user input
         preprocessed_input = preprocess(user_input,language)
         with open(f'patterns.json', 'r') as file:
