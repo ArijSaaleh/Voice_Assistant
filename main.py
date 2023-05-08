@@ -106,11 +106,9 @@ def get_intent(user_input, intents, language):
             if 'patterns' in intent and language in intent['patterns']:
                 for pattern in intent['patterns'][language]:
                     score = fuzz.partial_ratio(str(user_input).lower(), str(pattern).lower())
-                    print(score)
                     if score > max_score:
                         max_score = score
                         matched_intent = intent
-        print("Matchedd: ", matched_intent)
         # Calculate confidence score
         confidence = max_score / 100
         if (confidence < 0.5):
@@ -123,15 +121,12 @@ def get_intent(user_input, intents, language):
         print(f'Error intent: {str(e)}')
         return "error getting the intent",0
 #Function to get the response based on the intent
-def get_response(tokens,intents,language):
+def get_response(intent,language):
     try:
-        #get the intent & the confidence
-        matched_intent , confidence = get_intent(tokens, intents, language)
-        print("fel Respoonse : ", matched_intent)
         #select a random response
-        response = random.choice(matched_intent['responses'][language])
+        response = random.choice(intent['responses'][language])
         #speak the response
-        print(response)
+        print("R gR: ",response)
         speak(response)
         return response,confidence
     except Exception as e:
@@ -147,9 +142,10 @@ while True:
         preprocessed_input = preprocess(user_intent,language)
         #get intent
         intent, confidence = get_intent(preprocessed_input,intents, language)
+        print("Main intent: ", intent, confidence)
         #get response
-        response=get_response(preprocessed_input,intents,language)
-        print("Response: ",response)
+        response,confidence=get_response(intent,language)
+        print("main Response: ",response, confidence)
         #Handle no response found
         if response is None:
             print("Sorry I don't know how to response.")
