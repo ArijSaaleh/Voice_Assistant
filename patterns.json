@@ -4,7 +4,7 @@
       "tag": "greetings",
       "patterns": {
         "en": ["hi", "hello", "hey"],
-        "fr": ["salut", "bonjour"]
+        "fr": ["salut", "bonjour","Bon après midi"]
       },
       "responses": {
         "en": ["Hello!", "Hi there!", "Hey!"],
