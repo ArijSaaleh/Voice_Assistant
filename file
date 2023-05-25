@@ -1,0 +1,31 @@
+├── main.py
+├── assistant/
+│   ├── __init__.py
+│   ├── assistant.py
+│   ├── modules/
+│   │   ├── __init__.py
+│   │   ├── speech_recognition/
+│   │   │   ├── __init__.py
+│   │   │   ├── speech_recognizer.py
+│   │   ├── natural_language_processing/
+│   │   │   ├── __init__.py
+│   │   │   ├── nlp_processor.py
+│   │   ├── action_handler/
+│   │   │   ├── __init__.py
+│   │   │   ├── action_handler.py
+│   │   ├── text_to_speech/
+│   │   │   ├── __init__.py
+│   │   │   ├── text_to_speech_converter.py
+│   ├── utils/
+│   │   ├── __init__.py
+│   │   ├── audio_utils.py
+├── tests/
+│   ├── __init__.py
+│   ├── test_assistant.py
+│   ├── test_speech_recognition.py
+│   ├── test_nlp_processor.py
+│   ├── test_action_handler.py
+│   ├── test_text_to_speech_converter.py
+├── data/
+│   ├── language_model.pkl
+│   ├── pretrained_model.h5
