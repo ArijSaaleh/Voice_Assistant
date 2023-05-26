@@ -29,3 +29,4 @@
 ├── data/
 │   ├── language_model.pkl
 │   ├── pretrained_model.h5
+sudo apt-get install libasound2 alsa-utils alsa-oss
