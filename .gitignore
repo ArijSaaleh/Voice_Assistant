@@ -1,3 +1,5 @@
+venv/
+requirements.txt
 /test.py
 /lid.176.bin
 /.env
