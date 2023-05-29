@@ -1,24 +1,20 @@
-from mycroft import MycroftAI
 
-# Create an instance of Mycroft
-mycroft = MycroftAI()
+import requests
+import sounddevice as sd
+import numpy as np
+from resemble import Resemble
+  
+Resemble.api_key('HvBlf5QgzvA8PxyoOs3w8gtt')
+# Resemble AI API endpoint
+Resemble.syn_server_endpoint= "http://f.cluster.resemble.ai/stream"
 
-# Function to handle the speech recognition event
-def handle_utterance(event):
-    utterance = event.data["utterances"][0]  # Get the recognized utterance
-    print("User:", utterance)  # Print the user's input
-    
-    # Perform some logic based on the user's input
-    # ...
-    
-    # Generate a response
-    response = "This is a response."  # Replace with your desired response
-    
-    # Speak the response
-    mycroft.speak(response)
+# Resemble AI API key
+api_key = 'HvBlf5QgzvA8PxyoOs3w8gtt'
 
-# Register the event handler for the "recognizer_loop:utterance" event
-mycroft.on("recognizer_loop:utterance", handle_utterance)
+# Text to be synthesized
+text = "Hello, this is a test message."
 
-# Start Mycroft
-mycroft.run()
+# Request payload
+Response = Resemble.v2.clips.stream(project_uuid="7cd5e72b",voice_uuid="b2d1bb75",body="Streaming helps deliver synthesized audio before it's entirely ready.")
+for res in Response:
+    print(res)
