@@ -8,7 +8,7 @@ load_dotenv()
 os.environ['GOOGLE_APPLICATION_CREDENTIALS']='private_key.json'
 project_id=os.getenv("PROJECT_KEY") 
 session_id=os.getenv("SESS_ID")
-texts=["ESPRIT"]
+texts=["who are you"]
 # [START dialogflow_detect_intent_with_texttospeech_response]
 def detect_intent_with_texttospeech_response(
     project_id, session_id, texts, language_code
