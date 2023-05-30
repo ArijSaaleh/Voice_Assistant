@@ -53,7 +53,4 @@ def detect_intent_with_texttospeech_response(
             print('Audio content written to file "output.wav"')
             playsound("output.wav")
             print("ok")
-
-
-# [MAIN CALL FOR NEEDED FUNCTIONS]
 detect_intent_with_texttospeech_response(project_id,session_id, texts, "en")
