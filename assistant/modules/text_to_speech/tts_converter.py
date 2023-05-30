@@ -10,9 +10,9 @@ class TextToSpeechConverter:
         try:
             with open(output_file, "wb") as out:
                 out.write(response.output_audio)
-                print(f'Audio content written to file "{output_file}"')
+                #print(f'Audio content written to file "{output_file}"')
             
             playsound(output_file)
-            print("Playback completed.")
+            #print("Playback completed.")
         except Exception as e:
             print(f"An error occurred during playback: {str(e)}")

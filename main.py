@@ -1,6 +1,5 @@
 from assistant.modules.NLP.nlp_processor import NLPProcessor
 from assistant.modules.text_to_speech.tts_converter import TextToSpeechConverter
-from google.cloud import dialogflow
 import os
 from dotenv import load_dotenv
 # Load the environment variables from the .env file
