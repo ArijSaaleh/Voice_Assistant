@@ -1,13 +1,18 @@
-import pyttsx3
-
+from playsound import playsound
 
 class TextToSpeechConverter:
     def __init__(self):
-        self.engine = pyttsx3.init()
-
-    def speak(self, text):
-        # Set the speech rate (words per minute)
-        self.engine.setProperty("rate", 150)
-        self.engine.setProperty("volume", 0.8)  # Set the volume (0.0 to 1.0)
-        self.engine.say(text)  # Convert text to speech
-        self.engine.runAndWait()
+        pass
+        
+    def speak(self, response):
+        output_file = "output.wav"
+        
+        try:
+            with open(output_file, "wb") as out:
+                out.write(response.output_audio)
+                print(f'Audio content written to file "{output_file}"')
+            
+            playsound(output_file)
+            print("Playback completed.")
+        except Exception as e:
+            print(f"An error occurred during playback: {str(e)}")
