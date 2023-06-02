@@ -28,7 +28,7 @@ while True:
         fulfilment_text = response.query_result.fulfillment_text
         confidence = response.query_result.intent_detection_confidence
         print("Fulfillment text: {}".format(fulfilment_text))
-        print("Confidence: {}".format(confidence))#hhhh
+        print("Confidence: {}".format(confidence))
         tts_converter.speak(response)
         texts=""
     else:
