@@ -30,7 +30,6 @@ while True:
         print("Fulfillment text: {}".format(fulfilment_text))
         print("Confidence: {}".format(confidence))
         tts_converter.speak(response)
-        tts_converter.speak("hello")
         texts=""
     else:
         print("No valid response received from Dialogflow.")
